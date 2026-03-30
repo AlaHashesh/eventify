@@ -3,42 +3,19 @@ import { useQuery } from '@tanstack/react-query'
 interface Event {
   id: number;
   title: string;
+  subtitle: string;
   description: string | null;
   capacity: number | null;
   created_at: string;
 }
 
-const fetchEventsReal = async (): Promise<Event[]> => {
+const fetchEvents = async (): Promise<Event[]> => {
   const response = await fetch('http://localhost:8000/events/')
   if (!response.ok) {
     throw new Error('Could not connect to the backend. Is it attached running?')
   }
   return response.json()
 }
-
-const fetchEvents = async (): Promise<Event[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          title: "Event Title #1",
-          description: "Event Description #1",
-          capacity: 10,
-          id: 1,
-          created_at: "2026-03-28T00:00:00"
-        },
-        {
-          title: "Event Title #2",
-          description: "Event Description #3",
-          capacity: 15,
-          id: 2,
-          created_at: "2026-03-28T00:00:00"
-        },
-      ])
-    }, 1000)
-  })
-}
-
 
 function App() {
   const { data: events = [], isLoading: loading, error } = useQuery({
@@ -78,7 +55,7 @@ function App() {
             ) : (
               events.map((event) => (
                 <div key={event.id} className="event-card">
-                  <h3 className="event-title">{event.title}</h3>
+                  <h3 className="event-title">{event.title} ({event.subtitle})</h3>
                   <p className="event-desc">{event.description || 'No description provided.'}</p>
                   <div className="event-footer">
                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
