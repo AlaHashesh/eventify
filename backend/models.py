@@ -7,6 +7,7 @@ class Event(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), index=True, nullable=False)
+    subtitle = Column(String(255), index=True, nullable=False)
     description = Column(Text, nullable=True)
     capacity = Column(Integer, nullable=True, default=0)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

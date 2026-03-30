@@ -4,6 +4,7 @@ from datetime import datetime
 
 class EventBase(BaseModel):
     title: str
+    subtitle: str
     description: Optional[str] = None
     capacity: Optional[int] = 0
 
