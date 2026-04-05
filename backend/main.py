@@ -20,6 +20,7 @@ app.add_middleware(
 @app.get("/events/", response_model=list[schemas.Event])
 def read_events(skip: int = 0, limit: int = 100, db: Session = Depends(database.get_db)):
     events = db.query(models.Event).offset(skip).limit(limit).all()
+
     return events
 
 @app.post("/events/", response_model=schemas.Event)

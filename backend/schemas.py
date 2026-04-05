@@ -5,8 +5,14 @@ from datetime import datetime
 class EventBase(BaseModel):
     title: str
     subtitle: str
+    subtitle_2: str
     description: Optional[str] = None
     capacity: Optional[int] = 0
+
+class User(BaseModel):
+        name: str
+        email: str
+        password: str
 
 class EventCreate(EventBase):
     pass
