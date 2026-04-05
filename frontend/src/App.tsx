@@ -4,6 +4,7 @@ interface Event {
   id: number;
   title: string;
   subtitle: string;
+  subtitle_2: string;
   description: string | null;
   capacity: number | null;
   created_at: string;
@@ -56,6 +57,7 @@ function App() {
               events.map((event) => (
                 <div key={event.id} className="event-card">
                   <h3 className="event-title">{event.title} ({event.subtitle})</h3>
+                  <h4>Subtitle: {event.subtitle_2}</h4>
                   <p className="event-desc">{event.description || 'No description provided.'}</p>
                   <div className="event-footer">
                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
